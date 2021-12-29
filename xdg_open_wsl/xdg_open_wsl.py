@@ -132,9 +132,9 @@ def convert_filename_to_windows_new(fn: str) -> str:
     # realpath gets to it
     file_prefix = "file://"
     if fn.startswith(file_prefix):
-        fn = fn[len(file_prefix):]
+        fn = fn[len(file_prefix) :]
 
-    winfn = subprocess.check_output(["wslpath", "-aw", fn]).decode('utf-8').strip()
+    winfn = subprocess.check_output(["wslpath", "-aw", fn]).decode("utf-8").strip()
     return winfn
 
 
@@ -143,7 +143,7 @@ def get_explorer_path() -> str:
 
     Under some environments, explorer.exe is not on the WSL PATH, so we invoke it by its full WSL path.
     """
-    return subprocess.check_output(["wslpath", "-u", r"c:\windows\explorer.exe"]).decode('utf-8').strip()
+    return subprocess.check_output(["wslpath", "-u", r"f:\windows\explorer.exe"]).decode("utf-8").strip()
 
 
 def get_cmd_path() -> str:
@@ -152,7 +152,7 @@ def get_cmd_path() -> str:
     Under some environments, cmd.exe is not on the WSL PATH, so we invoke it by its full WSL path,
     derived from its canonical Windows location.
     """
-    return subprocess.check_output(["wslpath", "-u", r"c:\windows\system32/cmd.exe"]).decode('utf-8').strip()
+    return subprocess.check_output(["wslpath", "-u", r"f:\windows\system32/cmd.exe"]).decode("utf-8").strip()
 
 
 @click.command()
